@@ -1,123 +1,102 @@
-require "target/menu/version"
-require "target/menu/controls"
-require "target/menu/colors"
-require "target/menu/"
-require "target/menu/Hmenu"
-require "target/menu/Vmenu"
-require "target/menu/VsubMenu"
+require_relative "menu/version"
+require_relative "menu/updateMenu/VsubMenu"
+require_relative "menu/updateMenu/Hmenu"
+require_relative "menu/updateMenu/Vmenu"
+require_relative "menu/updateMenu/showMenu"
+require_relative "menu/colors"
+
+require 'io/console'
+class Controls
+  def initialize(aElect='e', aBack='q', aUp='w', aDown='s', aRight='d', aLeft='a')
+      @elect = aElect
+      @back = aBack
+      @up = aUp
+      @down = aDown
+      @right = aRight
+      @left = aLeft
+
+      @pos1 = 0
+      @pos2 = 0
+  end
+
+  def resetPos
+      @pos1 = 0
+      @pos2 = 0
+  end
+
+  def getPos1
+    return @pos1
+  end
+  
+  def getPos2
+    return @pos2
+  end
+
+  def getUp
+    return @up
+  end
+  def getDown
+    return @down
+  end
+  def getLeft
+    return @left
+  end
+  def getRight
+    return @right
+  end
+  def getElect
+    return @elect
+  end
+  def getBack
+    return @back
+  end
+
+  def setPos1(p)
+    @pos1 = p
+  end
+  
+  def setPos2(p)
+    @pos2 = p
+  end
+end
 
 module Target
-  module Menu
-    def simpleMenu(control, color, menuItems, submenuitems)
-      control.resetPos()
+  def Target.hi(str)
+    puts str
+  end
 
-      # TODO :selecionar cor
+  def Target.simpleMenu(control, color, menuItems, submenuitems=nil)
+    input = ''
+    control.resetPos()
 
-      def subMenu(submenu)
-        updatesubMenuV(menuItems, submenuitems, control, cl)
+    cl = Palette.selectColor(color)
 
-        def showMenu
-          if input == control.up
-            control.pos2--;
-          elsif input == control.down
-            control.pos2++;
-          end
-  
-          if control.pos2 == subMenu.length
-            control.pos2 = 0;
-          elsif control.pos2 < 0
-            control.pos2 = subMenu.length - 1;
-          end
-  
-          system("cls")
-          updatesubMenuV(menuItems, submenuitems, control, cl)
-        end
+    Vmenu.update(menuItems, control, cl)
+
+    loop do
+      Show.menuV(control, cl, input, menuItems)
+      input = STDIN.getch
+
+      if input == control.getBack()
+        control.setPos1(-1)
+        return control
       end
-
-      updateMenuV(menuItems, control, cl)
-
-      def showMenu
-        if input == control.up
-          control.pos1--;
-        elsif input == control.down
-          control.pos1++;
-        end
-
-        if control.pos1 == menu.length
-          control.pos1 = 0;
-        elsif control.pos1 < 0
-          control.pos1 = menu.length - 1;
-        end
-
-        system("cls")
-        updateMenuV(menuItems, control, cl)
-      end
-
-      do
-        showMenu;
-        input = gets.strip
-
-        if input == control.back
-          control.pos = -1
-          return control;
-        then
-
-        if input != control.elect
-          break
-        end
-      end
-
-      if submenuitems
-        subMenu(submenuitems)
-      end
+      puts "\e[H\e[2J"
+      break if input == control.getElect()
     end
-#-----------------------
-#-----------------------
-#-----------------------
-    def flexMenu(control, color, menu, mode)
-      
-      def subMenu(menu, submenu)
-      end
 
-      #------------------------
-
-      # TODO :selecionar cor
-
-      mode == 'h'? MenuH.updateH(menu, control, cl) : MenuV.updateV(menu, control, cl)
-
-      def showMenu
-        if input == control.up
-          control.pos1--;
-        elsif input == control.down
-          control.pos1++;
+    if submenuitems.nil? == false
+      VsubMenu.update(menuItems, submenuitems, control, cl)
+      loop do
+        Show.subMenuV(control, cl, input, menuItems, submenuitems)
+        input = STDIN.getch
+  
+        if input == control.getBack()
+          control.setPos2(-1)
+          return control
         end
-
-        if control.pos1 == menu.length
-          control.pos1 = 0;
-        elsif control.pos1 < 0
-          control.pos1 = menu.length - 1;
-        end
-
-        system("cls")
-        updateMenuV(menuItems, control, cl)
-      end
-
-      do
-        showMenu;
-        input = gets.strip
-
-        if input == control.back
-          control.pos = -1
-          return control;
-        then
-
-        if input != control.elect
-          break
-        end
-      end
-
-      if submenuitems
-        subMenu(submenuitems)
+        puts "\e[H\e[2J"
+        break if input == control.getElect
       end
     end
   end

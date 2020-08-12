@@ -1,20 +1,21 @@
-require "../colors"
-require "../controls"
+require_relative '../colors'
 
-module MenuV
-    def updateV(menu, control, cl)
-        for i = 0 in i...menu.length do
-            if menu.kindof?(Array) # se for menu flexível
-                if control.pos1 == i
-                    print("#{cl[0][2]}#{menu[i][0]}   #{Palette.colors[15][1]}}")
+module Vmenu
+    def Vmenu.update(menu, control, cl)
+        i = 0
+        for i in i...menu.length do
+            if menu.kind_of?(Array) # se for menu flexível
+                if control.getPos1 == i
+                    print(">#{cl[2]} #{menu[i]} #{Palette.colors[15][1]}<\n")
                 else
-                    print("#{menu[i][0]}\n")
+                    print("#{menu[i]}\n")
                 end
             else
-                if control.pos1 == i
-                    print("#{cl[0][2]}#{menu[i][0]   ${Palette.colors[15][1]}}\n")
+                if control.getPos1 == i
+                    print("#{cl[2]}#{menu[i]}   #{Palette.colors[15][1]}\n")
                 else
-                    print("#{menu[i][0]}\n")
+                    print("#{menu[i]}\n")
+                end
             end
         end
         print("\n")

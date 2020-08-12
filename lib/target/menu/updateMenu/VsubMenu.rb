@@ -1,10 +1,7 @@
-require "../colors"
-require "../controls"
-
-module SubmenuV
-    def updateSubV(menu, submenu, control, cl)
-        system("cls")
-        mTam = 0, subTam = 0;
+module VsubMenu
+    def VsubMenu.update(menu, submenu, control, cl)
+        puts "\e[H\e[2J"
+        mTam = 0, subTam = 0
         meiosub = (submenu.length / 2).to_i - 1
         mTam = menu.length
         subTam = submenu.length
@@ -36,40 +33,40 @@ module SubmenuV
         nAmeio = meiosub
         inicioSubmenu = nAselecionado - nAmeio
 
-        for i = 0 in i...menu.length do
+        for i in i...menu.length do
             if i == inicioSubmenu || (i > inicioSubmenu && i < (subTam + inicioSubmenu))
                 for i2 in i2...subTam do
                     if menu[i].kindof?(Array)
                         if i2 == control.pos2
                             if i == control.pos1
                                 print("#{cl[0][2]}#{menu[i2][0]}   #{Palette.colors[15][1]}}")
-                                print("#{cl[0][2]}#{submenu[2i][0]   ${Palette.colors[15][1]}}\n")
+                                print("#{cl[0][2]}#{submenu[2i][0]}   #{Palette.colors[15][1]}}\n")
                             else
                                 print("#{cl[0][2]}#{menu[i2][0]}   #{Palette.colors[15][1]}}")
-                                print("#{cl[0][2]}#{submenu[2i][0]   ${Palette.colors[15][1]}}\n")
+                                print("#{cl[0][2]}#{submenu[2i][0]}   #{Palette.colors[15][1]}}\n")
                             end
                         elsif i == control.pos1
                             print("#{cl[0][2]}#{menu[i2][0]}   #{Palette.colors[15][1]}}")
-                            print("#{cl[0][2]}#{submenu[2i][0]   ${Palette.colors[15][1]}}\n")
+                            print("#{cl[0][2]}#{submenu[2i][0]}   #{Palette.colors[15][1]}}\n")
                         else
                             print("#{cl[0][2]}#{menu[i2][0]}   #{Palette.colors[15][1]}}")
-                            print("#{cl[0][2]}#{submenu[2i][0]   ${Palette.colors[15][1]}}\n")
+                            print("#{cl[0][2]}#{submenu[2i][0]}   #{Palette.colors[15][1]}}\n")
                         end
                     else
                         if i2 == control.pos2
                             if i == control.pos1
                                 print("#{cl[0][2]}#{menu[i2][0]}   #{Palette.colors[15][1]}}")
-                                print("#{cl[0][2]}#{submenu[2i][0]   ${Palette.colors[15][1]}}\n")
+                                print("#{cl[0][2]}#{submenu[2i][0]}   #{Palette.colors[15][1]}}\n")
                             else
                                 print("#{cl[0][2]}#{menu[i2][0]}   #{Palette.colors[15][1]}}")
-                                print("#{cl[0][2]}#{submenu[2i][0]   ${Palette.colors[15][1]}}\n")
+                                print("#{cl[0][2]}#{submenu[2i][0]}   #{Palette.colors[15][1]}}\n")
                             end
                         elsif i == control.pos1
                             print("#{cl[0][2]}#{menu[i2][0]}   #{Palette.colors[15][1]}}")
-                            print("#{cl[0][2]}#{submenu[2i][0]   ${Palette.colors[15][1]}}\n")
+                            print("#{cl[0][2]}#{submenu[2i][0]}   #{Palette.colors[15][1]}}\n")
                         else
                             print("#{cl[0][2]}#{menu[i2][0]}   #{Palette.colors[15][1]}}")
-                            print("#{cl[0][2]}#{submenu[2i][0]   ${Palette.colors[15][1]}}\n")
+                            print("#{cl[0][2]}#{submenu[2i][0]}   #{Palette.colors[15][1]}}\n")
                         end
                     end
                 end
