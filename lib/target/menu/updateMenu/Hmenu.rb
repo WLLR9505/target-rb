@@ -3,7 +3,7 @@ module Hmenu
         i = 0
         for i in i...menu.length do
             if control.pos1 == i
-                print("#{cl[0][2]}#{menu[i][0]}   #{Palette.colors[15][1]}")
+                print("#{Palette.colors[cl][2]}#{menu[i][0]}   #{Palette.colors[15][1]}")
             else
                 print("#{menu[i][0]}")
             end
