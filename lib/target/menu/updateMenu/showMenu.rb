@@ -25,12 +25,12 @@ module Show
           control.setPos2(control.getPos2 + 1)
         end
 
-          if control.getPos2 == submenuitems.length
+        if control.getPos2 == submenuitems.length
           control.setPos2(0)
         elsif control.getPos2 < 0
           control.setPos2(menuItems.length - 1)
         end
         puts "\e[H\e[2J"
-        Vmenu.update(menuItems, control, cl)
+        VsubMenu.update(menuItems, submenuitems, control, cl)
     end
 end

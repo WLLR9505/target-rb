@@ -33,44 +33,50 @@ module VsubMenu
         nAmeio = meiosub
         inicioSubmenu = nAselecionado - nAmeio
 
-        for i in i...menu.length do
+        while i < mTam do
             if i == inicioSubmenu || (i > inicioSubmenu && i < (subTam + inicioSubmenu))
-                for i2 in i2...subTam do
-                    if menu[i].kind_of?(Array)
-                        if i2 == control.getPos2
-                            if i == control.getPos1
-                                print("#{Palette.colors[cl][2]}#{menu[i2]}   #{Palette.colors[15][1]}")
-                                print("#{Palette.colors[cl][2]}#{submenu[i2]}   #{Palette.colors[15][1]}\n")
+                while i2 < subTam do
+                    if menu[i].kind_of?(Array) # se for submenu flexível
+                        if i2 == control.getPos2()
+                            if i == control.getPos1() # selecionados na mesma linha
+                                print("#{Palette.colors[cl][2]}#{menu[i2][0]}#{Palette.colors[15][1]}".ljust(27, ' '))
+                                print("#{Palette.colors[cl][2]}#{submenu[i2]}#{Palette.colors[15][1]}\n")
                             else
-                                print("#{Palette.colors[cl][2]}#{menu[i2]}   #{Palette.colors[15][1]}")
-                                print("#{Palette.colors[cl][2]}#{submenu[i2]}   #{Palette.colors[15][1]}\n")
+                                print("#{Palette.colors[cl][2]}#{menu[i2][0] || ''}#{Palette.colors[15][1]}".ljust(19, ' '))
+                                print("#{Palette.colors[cl][2]}#{submenu[i2]}#{Palette.colors[15][1]}\n")
                             end
-                        elsif i == control.getPos1
-                            print("#{Palette.colors[cl][2]}#{menu[i2]}   #{Palette.colors[15][1]}")
-                            print("#{Palette.colors[cl][2]}#{submenu[i2]}   #{Palette.colors[15][1]}\n")
+                        elsif i == control.getPos1()
+                            print("#{Palette.colors[cl][2]}#{menu[i2][0]}#{Palette.colors[15][1]}".ljust(27, ' '))
+                            print("#{Palette.colors[cl][2]}#{submenu[i2]}#{Palette.colors[15][1]}\n")
                         else
-                            print("#{Palette.colors[cl][2]}#{menu[i2]}   #{Palette.colors[15][1]}")
-                            print("#{Palette.colors[cl][2]}#{submenu[i2]}   #{Palette.colors[15][1]}\n")
+                            print("#{Palette.colors[cl][2]}#{menu[i2][0] || ''}#{Palette.colors[15][1]}".ljust(15, ' '))
+                            print("#{Palette.colors[cl][2]}#{submenu[i2]}#{Palette.colors[15][1]}\n")
                         end
                     else
-                        if i2 == control.getPos2
-                            if i == control.getPos1
-                                print("#{Palette.colors[cl][2]}#{menu[i2]}   #{Palette.colors[15][1]}")
-                                print("#{Palette.colors[cl][2]}#{submenu[i2]}   #{Palette.colors[15][1]}\n")
+                        if i2 == control.getPos2()
+                            if i == control.getPos1() # selecionados na mesma linha
+                                print("#{Palette.colors[cl][2]}#{menu[i]}#{Palette.colors[15][1]}".ljust(27, ' '))
+                                print("#{Palette.colors[cl][2]}#{submenu[i2]}#{Palette.colors[15][1]}\n")
                             else
-                                print("#{Palette.colors[cl][2]}#{menu[i2]}   #{Palette.colors[15][1]}")
-                                print("#{Palette.colors[cl][2]}#{submenu[i][0]}   #{Palette.colors[15][1]}\n")
+                                print("#{Palette.colors[15][1]}#{menu[i] || ''}".ljust(19, ' '))
+                                print("#{Palette.colors[cl][2]}#{submenu[i2]}#{Palette.colors[15][1]}\n")
                             end
-                        elsif i == control.getPos1
-                            print("#{Palette.colors[cl][2]}#{menu[i2]}   #{Palette.colors[15][1]}")
-                            print("#{Palette.colors[cl][2]}#{submenu[i2]}   #{Palette.colors[15][1]}\n")
+                        elsif i == control.getPos1()
+                            print("#{Palette.colors[cl][2]}#{menu[i]}#{Palette.colors[15][1]}".ljust(27, ' '))
+                            print("#{submenu[i2]}\n")
                         else
-                            print("#{Palette.colors[cl][2]}#{menu[i2]}   #{Palette.colors[15][1]}")
-                            print("#{Palette.colors[cl][2]}#{submenu[i2]}   #{Palette.colors[15][1]}\n")
+                            print("#{menu[i]}".ljust(15, ' '))
+                            print("#{submenu[i2]}\n")
                         end
                     end
+                    i = i + 1
+                    i2 = i2 + 1
                 end
             end
+            if i < mTam
+                print("#{menu[i]}\n")
+            end
+            i = i + 1
         end
     end
 end

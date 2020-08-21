@@ -1,28 +1,35 @@
 require './lib/target/menu'
 
-def test(t)
-    puts(t)
-    sleep(2)
+def delete(arr, item)
+    puts 'deleting...'
+    sleep(0.5)
+    arr.delete(item)
 end
 
+def update(arr, index)
+    puts 'updating...'
+    sleep(0.5)
+    arr[index] = gets.chomp()
+    return arr
+end
+# ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---
 def main
-    menu = ['item1', 'item2', 'item3']
+    menu = ['in2pos', 'wllr-server', 'cipher-vgnr', 'target', 'target-rb', 'korvo-bot']
+    submenu = ['update', 'delete']
     control = Controls.new()
 
     loop do
-        Target.simpleMenu(control, 'red', menu)
-    
+        Target.simpleMenu(control, 'red', menu, submenu)
+
         if control.getPos1 == -1
             return 0
         end
     
-        case control.getPos1
-        when 0
-            test(menu[control.getPos1])
-        when 1
-            test(menu[control.getPos1])
-        when 2
-            test(menu[control.getPos1])
+        case control.getPos2
+        when 0 # update
+            menu = update(menu, control.getPos1)
+        when 1 # delete
+            delete(menu, menu[control.getPos1])
         end
     end
 end
