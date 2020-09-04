@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "target/menu"
+require "target_menu"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

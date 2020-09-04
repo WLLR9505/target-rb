@@ -1,5 +1,5 @@
-require_relative "./Vmenu"
-# require_relative "./VsubMenu"
+require  "target_menu/Vmenu"
+# require  "VsubMenu"
 
 module Show
     def Show.menuV(control, cl, input, menuItems, submenuitems=nil)

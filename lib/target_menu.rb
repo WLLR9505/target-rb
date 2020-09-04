@@ -1,11 +1,12 @@
-require_relative "menu/version"
-require_relative "menu/updateMenu/VsubMenu"
-require_relative "menu/updateMenu/Hmenu"
-require_relative "menu/updateMenu/Vmenu"
-require_relative "menu/updateMenu/showMenu"
-require_relative "menu/colors"
+require "target_menu/version"
+require "target_menu/VsubMenu"
+require "target_menu/Hmenu"
+require "target_menu/Vmenu"
+require "target_menu/showMenu"
+require "target_menu/colors"
 
 require 'io/console'
+
 class Controls
   def initialize(aElect='e', aBack='q', aUp='w', aDown='s', aRight='d', aLeft='a')
       @elect = aElect
@@ -35,18 +36,23 @@ class Controls
   def getUp
     return @up
   end
+
   def getDown
     return @down
   end
+
   def getLeft
     return @left
   end
+
   def getRight
     return @right
   end
+
   def getElect
     return @elect
   end
+  
   def getBack
     return @back
   end
@@ -61,9 +67,6 @@ class Controls
 end
 
 module Target
-  def Target.hi(str)
-    puts str
-  end
 
   def Target.simpleMenu(control, color, menuItems, submenuitems=nil)
     input = ''

@@ -1,6 +1,6 @@
-RSpec.describe Target::Menu do
+RSpec.describe TargetMenu do
   it "has a version number" do
-    expect(Target::Menu::VERSION).not_to be nil
+    expect(TargetMenu::VERSION).not_to be nil
   end
 
   it "does something useful" do

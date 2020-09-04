@@ -1,4 +1,5 @@
-require './lib/target/menu'
+$LOAD_PATH.unshift('../../../target_menu/lib')
+require 'target_menu'
 
 def delete(arr, item)
     puts 'deleting...'
